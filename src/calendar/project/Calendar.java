@@ -21,15 +21,19 @@ public class Calendar {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		System.out.print("반복횟수를 입력하세요.");
+		String PROMPT ="cal>";
+//		System.out.print(PROMPT);
+//		System.out.print("반복횟수를 입력하세요.");
 		Scanner scan = new Scanner(System.in);
-		int number = scan.nextInt();
+//		int number = scan.nextInt();
 		Calendar cal = new Calendar();
 		// 숫자를 입력받아 해당하는 달의 최대 일수를 출력하는 프로그램
-		for (int i =1; i<=number; i++) {
+		int month = 0;
+		while (true) {
 			
 		System.out.println("달을 입력하세요.");
-		int month = scan.nextInt();
+		System.out.print(PROMPT);
+		month = scan.nextInt();
 //		String number = scan.next();
 //		 int num = scan.nextInt(); 하면 한번에 처리
 //		int num = Integer.parseInt(number);
@@ -38,10 +42,13 @@ public class Calendar {
 //		int[] month = {1,2,3,4,5,6,7,8,9,10,11,12};
 
 		if (1 <= month && month <= 12) {
+			System.out.print(PROMPT);
 			System.out.println(month + "월은 " + cal.getMaxDaysOfMonth(month) + "일까지 있습니다.");
 
 		} else {
+			System.out.print(PROMPT);
 			System.out.println("잘못입력했습니다.");
+			break;
 		}
 		}
 		cal.sample();
