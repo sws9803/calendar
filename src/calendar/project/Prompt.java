@@ -12,22 +12,23 @@ public class Prompt {
 	 */
 
 	public int parseDay(String week) {
-		if (week.equals("su")) {
+		switch(week) {
+		case "su":
 			return 0;
-		} else if (week.equals("mo")) {
+		case "mo":
 			return 1;
-		} else if (week.equals("tu")) {
+		case "tu":
 			return 2;
-		} else if (week.equals("we")) {
+		case "we":
 			return 3;
-		} else if (week.equals("th")) {
+		case "th":
 			return 4;
-		} else if (week.equals("fr")) {
+		case "fr":
 			return 5;
-		} else if (week.equals("sa")) {
+		case "sa":
 			return 6;
-		} else {
-			return 0;
+		default:
+			return 0;		
 		}
 	}
 
@@ -46,47 +47,28 @@ public class Prompt {
 		Scanner scan = new Scanner(System.in);
 		Calendar cal = new Calendar();
 
-		while (true) {
+		boolean isLoop = true;
+		while (isLoop) {
 			System.out.println("명령(1, 2, 3, h, q)");
 			String cmd = scan.next();
-			if (cmd.equals("1"))
+			switch(cmd) {
+			case "1":
 				cmdRegister(scan, cal);
-			else if (cmd.equals("2"))
-				cmdSerch(scan, cal);
-			else if (cmd.equals("3"))
-				cmdCal(scan, cal);
-			else if (cmd.equals("h"))
-				printMenu();
-			else if (cmd.equals("q"))
 				break;
+			case "2":
+				cmdSerch(scan, cal);
+				break;
+			case "3":
+				cmdCal(scan, cal);
+				break;
+			case "h":
+				printMenu();
+				break;
+			case "q":
+				isLoop = false;
+				break;
+			}
 		}
-//		System.out.println("Thank you. Bye~");
-//		scan.close();
-
-//			System.out.println("년도를 입력하시오");
-//			System.out.print("YEAR> ");
-//			year = scan.nextInt();
-//			if (year == -1) {
-//				break;
-//			}
-//			System.out.println("달를 입력하시오");
-//			System.out.print("MONTH> ");
-//			month = scan.nextInt();
-//			if (month == -1) {
-//				break;
-//			}
-//			if (month > 12) {
-//				System.out.println("잘못된 입력입니다.");
-//				continue;
-//			}
-//			System.out.println("첫째 날의 요일을 입력하세요 (su, mo, tu, we, th, fr, sa)");
-//			System.out.print("WEEK> ");
-//			String str_weekday = scan.next();
-//			weekday = parseDay(str_weekday);
-
-//			cal.printCalendar(year,month);
-//			cal.maxdays(year,month);
-//		}
 		System.out.println("Bye~");
 		scan.close();
 	}
