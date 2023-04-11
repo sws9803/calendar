@@ -1,7 +1,6 @@
 package calendar.project;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -12,10 +11,10 @@ public class Calendar {
 	
 	
 	
-	private HashMap <Date, String> planMap;
+	private HashMap <Date, PlanItem> planMap;
 	
 	public Calendar() {
-		planMap = new HashMap<Date, String>();
+		planMap = new HashMap<Date, PlanItem>();
 	}
 	/**
 	 * 
@@ -23,16 +22,14 @@ public class Calendar {
 	 * @param plan
 	 * @throws ParseException 
 	 */
-	public void registerPlan(String strDate, String plan) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
-//		System.out.println(date);
-		planMap.put(date, plan);
+	public void registerPlan(String strDate, String plan) {
+		PlanItem p = new PlanItem(strDate, plan);
+		planMap.put(p.getDate(), p);
 	}
 	
-	public String serchPlan(String strDate) throws ParseException {
-		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
-		String plan = planMap.get(date);
-		return plan;
+	public PlanItem serchPlan(String strDate) {
+		Date date = PlanItem.getDatefromString(strDate);
+		return planMap.get(date);
 		
 	}
 	
@@ -126,9 +123,6 @@ public class Calendar {
 	
 	
 	public static void main(String[] args) throws ParseException {
-		Calendar cal = new Calendar();
-		Prompt p = new Prompt();
-		p.runPrompt();
 
 	}
 }
