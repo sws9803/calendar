@@ -1,10 +1,42 @@
 package calendar.project;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
 public class Calendar {
 
 	private static final int[] MAX_DAYS = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_MAX_DAYS = { 0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-//
+	
+	
+	
+	private HashMap <Date, String> planMap;
+	
+	public Calendar() {
+		planMap = new HashMap<Date, String>();
+	}
+	/**
+	 * 
+	 * @param date ex: "2017-06-20"
+	 * @param plan
+	 * @throws ParseException 
+	 */
+	public void registerPlan(String strDate, String plan) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+//		System.out.println(date);
+		planMap.put(date, plan);
+	}
+	
+	public String serchPlan(String strDate) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		String plan = planMap.get(date);
+		return plan;
+		
+	}
+	
+	//윤년계산
 	public boolean isLeapYear(int year) {
 		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
 			return true;
@@ -13,6 +45,7 @@ public class Calendar {
 		}
 	}
 
+	//최대 날짜
 	public int getMaxDaysOfMonth(int year, int month) {
 		if (isLeapYear(year)) {
 			return LEAP_MAX_DAYS[month];
@@ -21,6 +54,7 @@ public class Calendar {
 		}
 	}
 	
+	//달력 출력
 	public void printCalendar(int year, int month) {
 		
 		System.out.printf("    <<%d년%d월>>\n", year, month);
@@ -55,7 +89,7 @@ public class Calendar {
 		System.out.println();
 	}
 		
-
+//요일 찾기
 	private int getWeekday(int year, int month, int day) {
 		// TODO Auto-generated method stub
 		int syear = 1970;
@@ -79,6 +113,7 @@ public class Calendar {
 		return weekday;
 	}
 
+	//당월 최대 날짜
 	public void maxdays(int year, int month) {
 		// 숫자를 입력받아 해당하는 달의 최대 일수를 출력하는 프로그램\
 		if (1 <= month && month <= 12) {
@@ -88,8 +123,10 @@ public class Calendar {
 			System.out.println("잘못입력했습니다.");
 		}
 	}
-
-	public static void main(String[] args) {
+	
+	
+	public static void main(String[] args) throws ParseException {
+		Calendar cal = new Calendar();
 		Prompt p = new Prompt();
 		p.runPrompt();
 
