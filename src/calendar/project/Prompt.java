@@ -116,7 +116,7 @@ public class Prompt {
 			String word = s.next();
 			text += word + " ";
 			if (word.endsWith(";")) {
-				word = word.replace(";","");
+				word = text.replace(";","");
 				text = word;
 				break;
 			}
