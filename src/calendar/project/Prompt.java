@@ -55,15 +55,15 @@ public class Prompt {
 				System.out.println("잘못된 입력입니다.");
 				continue;
 			}
-			System.out.println("첫째 날의 요일을 입력하세요 (su, mo, tu, we, th, fr, sa)");
-			System.out.print("WEEK> ");
-			String str_weekday = scan.next();
-			weekday = parseDay(str_weekday);
+//			System.out.println("첫째 날의 요일을 입력하세요 (su, mo, tu, we, th, fr, sa)");
+//			System.out.print("WEEK> ");
+//			String str_weekday = scan.next();
+//			weekday = parseDay(str_weekday);
 			if (weekday == -1) {
 				break;
 			}
 			
-			cal.printCalendar(year,month,weekday);
+			cal.printCalendar(year,month);
 //			cal.maxdays(year,month);
 		}
 		System.out.println("Bye~");
